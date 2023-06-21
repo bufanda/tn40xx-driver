@@ -3889,9 +3889,7 @@ static inline int bdx_tx_fifo_size_to_packets(int tx_size)
  */
 static void
 bdx_get_ringparam(struct net_device *netdev,
-		 struct ethtool_ringparam *ring,
-		 struct kernel_ethtool_ringparam *kernel_ering,
-		 struct netlink_ext_ack *extack)
+		 struct ethtool_ringparam *ring)
 {
 	struct bdx_priv *priv = netdev_priv(netdev);
 
