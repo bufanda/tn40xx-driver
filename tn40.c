@@ -630,6 +630,13 @@ static void print_eth_id(struct net_device *ndev)
 #define bdx_enable_interrupts(priv)  do { WRITE_REG(priv, regIMR, priv->isr_mask); } while (0)
 #define bdx_disable_interrupts(priv) do { WRITE_REG(priv, regIMR, 0); } while (0)
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,15,0)
+static inline void eth_hw_addr_set(struct net_device *dev, const u8 *addr)
+{
+    memcpy(dev->dev_addr, addr, ETH_ALEN);
+}
+#endif
+
 /* bdx_fifo_init
  * Create TX/RX descriptor fifo for host-NIC communication. 1K extra space is
  * allocated at the end of the fifo to simplify processing of descriptors that
